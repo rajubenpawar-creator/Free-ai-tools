@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Resizer Online – Resize Images Free</title>
+<meta name="description" content="Resize images online free. Change image width and height instantly for website and social media.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<h1>Image Resizer Online</h1>
+<div class="ad">Ad Space</div>
+
+<input type="file" id="img">
+<input type="number" id="w" placeholder="Width">
+<input type="number" id="h" placeholder="Height">
+<button onclick="resize()">Resize Image</button>
+<br><a id="out"></a>
+
+<script>
+function resize(){
+ const i=new Image();
+ i.src=URL.createObjectURL(img.files[0]);
+ i.onload=()=>{
+  const c=document.createElement("canvas");
+  c.width=w.value;c.height=h.value;
+  c.getContext("2d").drawImage(i,0,0,c.width,c.height);
+  c.toBlob(b=>{
+   out.href=URL.createObjectURL(b);
+   out.download="resized.png";
+   out.innerText="Download Resized Image";
+  });
+ }
+}
+</script>
+
+</body>
+</html>
